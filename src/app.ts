@@ -24,9 +24,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.get("/test", (req, res) => {
-  res.status(200).send("hello");
-});
+// app.get("/test", (req, res) => {
+//   res.status(200).send("hello");
+// });
 
 const server = createServer(app);
 
