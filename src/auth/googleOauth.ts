@@ -1,7 +1,7 @@
 import passport from "passport";
-import GoogleStrategy from "passport-google-oauth2";
 import userModel from "../models/userModel";
 import { JWTAuth } from "./jwt.js";
+var GoogleStrategy = require("passport-google-oauth20");
 
 passport.use(
   "google",

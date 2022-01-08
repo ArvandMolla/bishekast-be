@@ -1,8 +1,13 @@
 import jwt from "jsonwebtoken";
 import createError from "http-errors";
 import userModel from "../models/userModel";
+import { Request, Response, NextFunction } from "express";
 
-export const JWTAuthMiddleware = async (req: any, res: any, next: any) => {
+export const JWTAuthMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.headers.authorization) {
     next(createError(401, "No authorization header was found!"));
   } else {
