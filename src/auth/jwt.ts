@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import createError from "http-errors";
 import userModel from "../models/userModel";
 import { Request, Response, NextFunction } from "express";
+import { userInterface } from "../util/interfaces";
 
 export const JWTAuthMiddleware = async (
   req: Request,
@@ -29,7 +30,7 @@ export const JWTAuthMiddleware = async (
   }
 };
 
-export const JWTAuth = async (user) => {
+export const JWTAuth = async (user: userInterface) => {
   const accessToken = await generateJWT({ _id: user._id });
   return accessToken;
 };

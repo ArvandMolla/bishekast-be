@@ -12,7 +12,14 @@ const userSchema = new Schema(
     status: { type: String, enum: ["pending", "valid"], default: "valid" },
     role: {
       type: String,
-      enum: ["user", "superAdmin", "expert"],
+      enum: [
+        "user",
+        "admin",
+        "superAdmin",
+        "moderator1",
+        "moderator2",
+        "moderator3",
+      ],
       default: "user",
     },
     avatar: { type: String },
