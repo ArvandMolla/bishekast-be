@@ -25,3 +25,7 @@ export interface userInterface {
   _id?: string;
   __v?: number;
 }
+
+export interface tokenPayload {
+  _id: string;
+}
