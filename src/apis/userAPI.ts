@@ -1,7 +1,7 @@
 import express from "express";
 import userModel from "../models/userModel";
 import createError from "http-errors";
-import { JWTAuth, JWTAuthMiddleware } from "../auth/jwt.js";
+import { JWTAuth, JWTAuthMiddleware } from "../auth/jwt";
 import { checkCredentials } from "../util/checkCredentials";
 import passport from "passport";
 

@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
 import { createServer } from "http";
+import allRouters from "./apis/index";
 
 process.env.TS_NODE_DEV && require("dotenv").config();
 
@@ -24,9 +25,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-// app.get("/test", (req, res) => {
-//   res.status(200).send("hello");
-// });
+app.use("/api", allRouters);
 
 const server = createServer(app);
 
