@@ -6,7 +6,7 @@ const { Schema, model } = mongoose;
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String },
     googleId: { type: String },
     status: { type: String, enum: ["pending", "valid"], default: "valid" },
@@ -22,6 +22,8 @@ const userSchema = new Schema(
       ],
       default: "user",
     },
+    // cources must be added
+
     avatar: { type: String },
   },
   { timestamps: true }
