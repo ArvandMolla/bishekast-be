@@ -9,7 +9,11 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String },
     googleId: { type: String },
-    status: { type: String, enum: ["pending", "valid"], default: "valid" },
+    emailConfirmation: {
+      type: String,
+      enum: ["unconfirmed", "confirmed"],
+      default: "unconfirmed",
+    },
     role: {
       type: String,
       enum: [
@@ -22,7 +26,7 @@ const userSchema = new Schema(
       ],
       default: "user",
     },
-    // cources must be added
+    enrolments: { type: [String], default: [] },
 
     avatar: { type: String },
   },

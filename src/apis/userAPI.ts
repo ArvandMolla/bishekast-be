@@ -11,11 +11,10 @@ userRouter.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await checkCredentials(email, password);
-    console.log(user);
 
     if (user) {
       const accessToken = await JWTAuth(user);
-      res.send({ accessToken });
+      res.send({ accessToken, user });
     } else {
       next(createError(401, "credentials are not correct!"));
     }
@@ -26,9 +25,15 @@ userRouter.post("/login", async (req, res, next) => {
 
 userRouter.post("/register", async (req, res, next) => {
   try {
-    const newUser = new userModel(req.body);
-    const { _id } = await newUser.save();
-    res.status(201).send({ _id });
+    const user = await userModel.findOne({ email: req.body.email });
+
+    if (user) {
+      next(createError(400, "email already exists!"));
+    } else {
+      const newUser = new userModel(req.body);
+      const { _id } = await newUser.save();
+      res.status(201).send({ _id });
+    }
   } catch (error: any) {
     next(createError(500, error));
   }
@@ -36,8 +41,9 @@ userRouter.post("/register", async (req, res, next) => {
 
 userRouter.get("/is-loggedin", JWTAuthMiddleware, async (req, res, next) => {
   try {
-    if (req.user) {
-      res.status(200).send(true);
+    const user = req.user;
+    if (user) {
+      res.status(200).send({ user });
     }
   } catch (error: any) {
     next(createError(error));
