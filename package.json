@@ -23,6 +23,7 @@
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.75",
     "@mailchimp/mailchimp_transactional": "^1.0.47",
+    "@sendgrid/mail": "^7.6.2",
     "@types/bcrypt": "^5.0.0",
     "@types/passport-google-oauth2": "^0.1.4",
     "axios": "^0.24.0",

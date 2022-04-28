@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 mailchimp.setConfig({
-  apiKey: "1a6f96371337b82d85a80aaefc38134d-us20",
+  apiKey: "",
   server: "us20",
 });
 

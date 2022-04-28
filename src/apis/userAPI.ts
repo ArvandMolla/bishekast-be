@@ -4,6 +4,7 @@ import createError from "http-errors";
 import { JWTAuth, JWTAuthMiddleware } from "../auth/jwt";
 import { checkCredentials } from "../util/checkCredentials";
 import passport from "passport";
+import { registrationEmail } from "../email/registrationMail";
 
 const userRouter = express.Router();
 
@@ -31,8 +32,9 @@ userRouter.post("/register", async (req, res, next) => {
       next(createError(400, "email already exists!"));
     } else {
       const newUser = new userModel(req.body);
-      const { _id } = await newUser.save();
-      res.status(201).send({ _id });
+      const { _id, name, email } = await newUser.save();
+      res.status(201).send({ _id, name });
+      registrationEmail(name, email);
     }
   } catch (error: any) {
     next(createError(500, error));
